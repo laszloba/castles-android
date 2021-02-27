@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.vaslufi.castles.databinding.FragmentCastleDetailsBinding
 import com.vaslufi.castles.extension.exhaustive
@@ -14,6 +15,8 @@ class CastleDetailsFragment : Fragment() {
 
     private var _binding: FragmentCastleDetailsBinding? = null
     private val binding get() = _binding!!
+
+    private val args: CastleDetailsFragmentArgs by navArgs()
 
     private lateinit var viewModel: CastleDetailsViewModel
 
@@ -37,8 +40,7 @@ class CastleDetailsFragment : Fragment() {
 
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
 
-        // TODO Get from navigation argument
-        viewModel.loadCastleDetails(1L)
+        viewModel.loadCastleDetails(args.castleId)
     }
 
     override fun onDestroyView() {

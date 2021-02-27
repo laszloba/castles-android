@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
 import com.vaslufi.castles.extension.exhaustive
+import com.vaslufi.castles.model.CastleListItemViewModel
 
 class CastleListFragment : Fragment() {
 
@@ -42,8 +44,19 @@ class CastleListFragment : Fragment() {
             ViewModelProvider.NewInstanceFactory()
         ).get(CastleListViewModel::class.java)
 
-        // TODO Use dependency injection
-        listAdapter = CastleListAdapter(requireActivity())
+        // TODO Use dependency injection for list adapter
+        listAdapter = CastleListAdapter(requireActivity()).apply {
+            onItemClickedListener = object : CastleListAdapter.OnItemClickedListener {
+                override fun onItemClicked(model: CastleListItemViewModel) {
+                    // TODO Move navigation to separate layer
+                    findNavController().navigate(
+                        CastleListFragmentDirections.actionCastleListFragmentToCastleDetailsFragment(
+                            model.id
+                        )
+                    )
+                }
+            }
+        }
 
         with(binding.castleListRecyclerView) {
             layoutManager = LinearLayoutManager(context)
