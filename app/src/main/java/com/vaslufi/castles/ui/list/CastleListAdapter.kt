@@ -18,6 +18,8 @@ class CastleListAdapter(
             notifyDataSetChanged()
         }
 
+    var onItemClickedListener: OnItemClickedListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CastleListItemViewHolder =
         CastleListItemViewHolder(CastleListItemView(context))
 
@@ -25,6 +27,7 @@ class CastleListAdapter(
 
     override fun onBindViewHolder(holder: CastleListItemViewHolder, position: Int) {
         holder.view.bind(items[position])
+        holder.view.onItemClickedListener = onItemClickedListener
     }
 
     class CastleListItemViewHolder(val view: CastleListItemView) : RecyclerView.ViewHolder(view)
@@ -43,5 +46,9 @@ class CastleListAdapter(
         ): Boolean {
             return oldItem == newItem
         }
+    }
+
+    interface OnItemClickedListener {
+        fun onItemClicked(model: CastleListItemViewModel)
     }
 }

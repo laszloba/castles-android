@@ -12,12 +12,14 @@ class CastleListItemView : LinearLayout {
 
     private val binding = ViewCastleListItemBinding.inflate(LayoutInflater.from(context), this)
 
+    var onItemClickedListener: CastleListAdapter.OnItemClickedListener? = null
+
     constructor(context: Context) : super(context)
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) :
-        super(context, attrs, defStyleAttr)
+            super(context, attrs, defStyleAttr)
 
     init {
         layoutParams = LayoutParams(
@@ -31,6 +33,11 @@ class CastleListItemView : LinearLayout {
     }
 
     fun bind(model: CastleListItemViewModel) {
-        binding.nameTextView.text = model.name
+        with(binding.nameTextView) {
+            text = model.name
+            setOnClickListener {
+                onItemClickedListener?.onItemClicked(model)
+            }
+        }
     }
 }

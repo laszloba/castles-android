@@ -9,6 +9,28 @@
         android:id="@+id/castleListFragment"
         android:name="com.vaslufi.castles.ui.list.CastleListFragment"
         android:label="CastleListFragment"
-        tools:layout="@layout/fragment_castle_list" />
+        tools:layout="@layout/fragment_castle_list">
+
+        <action
+            android:id="@+id/action_castleListFragment_to_castleDetailsFragment"
+            app:destination="@id/castleDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/castleDetailsFragment"
+        android:name="com.vaslufi.castles.ui.details.CastleDetailsFragment"
+        android:label="CastleListFragment"
+        tools:layout="@layout/fragment_castle_details">
+
+        <argument
+            android:name="castleId"
+            app:argType="long" />
+
+    </fragment>
 
 </navigation>
