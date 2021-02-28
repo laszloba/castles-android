@@ -1,7 +1,7 @@
 package com.vaslufi.castles.model
 
-// TODO Extend with more fields
 data class CastleListItemViewModel(
-    val id: Long,
-    val name: String
-)
+    override val id: Long,
+    override val name: String,
+    override val imageUrl: String
+) : BaseCastleViewModel
