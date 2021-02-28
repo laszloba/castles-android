@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
 import com.vaslufi.castles.extension.exhaustive
 import com.vaslufi.castles.model.CastleListItemViewModel
+import com.vaslufi.castles.navigator.AppNavigator
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CastleListFragment : Fragment() {
@@ -29,6 +30,9 @@ class CastleListFragment : Fragment() {
 
     private lateinit var listAdapter: CastleListAdapter
 
+    @Inject
+    lateinit var navigator: AppNavigator
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,12 +48,7 @@ class CastleListFragment : Fragment() {
         listAdapter = CastleListAdapter(requireActivity()).apply {
             onItemClickedListener = object : CastleListAdapter.OnItemClickedListener {
                 override fun onItemClicked(model: CastleListItemViewModel) {
-                    // TODO Move navigation to separate layer
-                    findNavController().navigate(
-                        CastleListFragmentDirections.actionCastleListFragmentToCastleDetailsFragment(
-                            model.id
-                        )
-                    )
+                    navigator.navigateToCastleDetails(model.id)
                 }
             }
         }
