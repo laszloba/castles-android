@@ -19,7 +19,6 @@ interface CastleService {
     companion object {
         private const val BASE_URL = "https://gist.githubusercontent.com/laszloba/"
 
-        // TODO Use dependency injection
         fun create(): CastleService =
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
