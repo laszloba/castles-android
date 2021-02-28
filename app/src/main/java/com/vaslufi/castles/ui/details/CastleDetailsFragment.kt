@@ -5,20 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.vaslufi.castles.databinding.FragmentCastleDetailsBinding
 import com.vaslufi.castles.extension.exhaustive
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CastleDetailsFragment : Fragment() {
 
     private var _binding: FragmentCastleDetailsBinding? = null
     private val binding get() = _binding!!
 
     private val args: CastleDetailsFragmentArgs by navArgs()
-
-    private lateinit var viewModel: CastleDetailsViewModel
+    private val viewModel: CastleDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +32,6 @@ class CastleDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // TODO Use dependency injection
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(CastleDetailsViewModel::class.java)
 
         viewModel.viewState.observe(viewLifecycleOwner, ::render)
 

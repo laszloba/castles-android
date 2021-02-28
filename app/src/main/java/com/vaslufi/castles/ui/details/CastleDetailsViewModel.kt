@@ -6,9 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaslufi.castles.api.CastleService
 import com.vaslufi.castles.mapper.api.toview.CastleDataMapper
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CastleDetailsViewModel : ViewModel() {
+@HiltViewModel
+class CastleDetailsViewModel @Inject constructor(
+    private val service: CastleService,
+    private val castleDataMapper: CastleDataMapper
+) : ViewModel() {
 
     private val _viewState = MutableLiveData<CastleDetailsViewState>()
     val viewState: LiveData<CastleDetailsViewState>
@@ -20,14 +26,10 @@ class CastleDetailsViewModel : ViewModel() {
 
     fun loadCastleDetails(id: Long) {
         viewModelScope.launch {
-            // TODO Use dependency injection
-            val castleService = CastleService.create()
-            val castleDataMapper = CastleDataMapper()
-
             _viewState.value = Loading
 
             try {
-                val castleDetailsResponse = castleService.getCastleDetails(id)
+                val castleDetailsResponse = service.getCastleDetails(id)
 
                 if (castleDetailsResponse.isSuccessful) {
                     castleDetailsResponse.body()?.let {

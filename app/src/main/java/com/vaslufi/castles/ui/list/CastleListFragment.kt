@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
 import com.vaslufi.castles.extension.exhaustive
 import com.vaslufi.castles.model.CastleListItemViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CastleListFragment : Fragment() {
 
     private object Flipper {
@@ -23,7 +25,8 @@ class CastleListFragment : Fragment() {
     private var _binding: FragmentCastleListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: CastleListViewModel
+    private val viewModel: CastleListViewModel by viewModels()
+
     private lateinit var listAdapter: CastleListAdapter
 
     override fun onCreateView(
@@ -38,13 +41,6 @@ class CastleListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO Use dependency injection
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelProvider.NewInstanceFactory()
-        ).get(CastleListViewModel::class.java)
-
-        // TODO Use dependency injection for list adapter
         listAdapter = CastleListAdapter(requireActivity()).apply {
             onItemClickedListener = object : CastleListAdapter.OnItemClickedListener {
                 override fun onItemClicked(model: CastleListItemViewModel) {
