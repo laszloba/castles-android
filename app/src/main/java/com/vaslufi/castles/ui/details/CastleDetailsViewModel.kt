@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.delay
+import com.vaslufi.castles.api.CastleService
+import com.vaslufi.castles.mapper.api.toview.CastleDataMapper
 import kotlinx.coroutines.launch
 
 class CastleDetailsViewModel : ViewModel() {
@@ -18,16 +19,29 @@ class CastleDetailsViewModel : ViewModel() {
     }
 
     fun loadCastleDetails(id: Long) {
-        // TODO Load from API
         viewModelScope.launch {
+            // TODO Use dependency injection
+            val castleService = CastleService.create()
+            val castleDataMapper = CastleDataMapper()
+
             _viewState.value = Loading
 
-            delay(500L)
+            try {
+                val castleDetailsResponse = castleService.getCastleDetails(id)
 
-            // TODO Get from repository
-            _viewState.value = CastleDetailsLoaded(
-                "Bodiam Castle"
-            )
+                if (castleDetailsResponse.isSuccessful) {
+                    castleDetailsResponse.body()?.let {
+                        _viewState.value =
+                            CastleDetailsLoaded(
+                                castleDataMapper.map(it)
+                            )
+                    }
+                } else {
+                    _viewState.value = Error
+                }
+            } catch (e: Exception) {
+                _viewState.value = Error
+            }
         }
     }
 }

@@ -70,7 +70,7 @@ class CastleDetailsFragment : Fragment() {
                 binding.loadingProgressBar.visibility = View.INVISIBLE
                 with(binding.nameTextView) {
                     visibility = View.VISIBLE
-                    text = viewState.name
+                    text = viewState.castle.name
                 }
             }
         }.exhaustive
