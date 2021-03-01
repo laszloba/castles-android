@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 import com.vaslufi.castles.databinding.FragmentCastleDetailsBinding
 import com.vaslufi.castles.extension.exhaustive
+import com.vaslufi.castles.util.Intents
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,12 +51,16 @@ class CastleDetailsFragment : Fragment() {
         @Suppress("IMPLICIT_CAST_TO_ANY")
         when (viewState) {
             Loading -> {
-                binding.loadingProgressBar.visibility = View.VISIBLE
-                binding.nameTextView.visibility = View.INVISIBLE
+                with(binding) {
+                    loadingProgressBar.visibility = View.VISIBLE
+                    contentLayout.visibility = View.INVISIBLE
+                }
             }
             Error -> {
-                binding.loadingProgressBar.visibility = View.INVISIBLE
-                binding.nameTextView.visibility = View.INVISIBLE
+                with(binding) {
+                    loadingProgressBar.visibility = View.INVISIBLE
+                    contentLayout.visibility = View.INVISIBLE
+                }
 
                 Snackbar.make(
                     binding.rootLayout,
@@ -62,12 +70,40 @@ class CastleDetailsFragment : Fragment() {
                 ).show()
             }
             is CastleDetailsLoaded -> {
-                binding.loadingProgressBar.visibility = View.INVISIBLE
-                with(binding.nameTextView) {
-                    visibility = View.VISIBLE
-                    text = viewState.castle.name
+                val castle = viewState.castle
+
+                with(binding) {
+                    loadingProgressBar.visibility = View.INVISIBLE
+                    contentLayout.visibility = View.VISIBLE
+
+                    Glide.with(requireActivity())
+                        .load(castle.imageUrl)
+                        .transition(DrawableTransitionOptions.withCrossFade())
+                        .into(imageImageView)
+
+                    nameTextView.text = castle.name
+                    descriptionTextView.text = castle.description
+
+                    showButtonWithUrl(openWebsiteButton, castle.officialUrl)
+                    showButtonWithUrl(
+                        openInGoogleMapsButton,
+                        castle.googleCid?.let { "https://maps.google.com/?cid=$it" }
+                    )
                 }
             }
         }.exhaustive
+    }
+
+    private fun showButtonWithUrl(button: Button, url: String?) {
+        with(button) {
+            if (url != null) {
+                visibility = View.VISIBLE
+                setOnClickListener {
+                    Intents.openUrl(context, url)
+                }
+            } else {
+                visibility = View.GONE
+            }
+        }
     }
 }

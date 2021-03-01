@@ -6,7 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
 import com.vaslufi.castles.extension.exhaustive
 import com.vaslufi.castles.model.CastleListItemViewModel
@@ -54,7 +55,7 @@ class CastleListFragment : Fragment() {
         }
 
         with(binding.castleListRecyclerView) {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
             adapter = listAdapter
         }
 
