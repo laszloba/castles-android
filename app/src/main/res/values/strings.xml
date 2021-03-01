@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Castles</string>
+
+    <string name="content_description_image_of_the_castle">Image of the castle</string>
+
+    <string name="castle_details_open_website_button">Website</string>
+    <string name="castle_details_open_in_google_maps_button">Google Maps</string>
 </resources>
