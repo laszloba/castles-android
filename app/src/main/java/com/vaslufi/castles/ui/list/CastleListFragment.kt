@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
 import com.vaslufi.castles.extension.exhaustive
 import com.vaslufi.castles.model.CastleListItemViewModel
 import com.vaslufi.castles.navigator.AppNavigator
+import com.vaslufi.castles.ui.list.impl.CastleListViewModelImpl
+import com.vaslufi.castles.util.extension.collectIn
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,8 +30,6 @@ class CastleListFragment : Fragment() {
     private var _binding: FragmentCastleListBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: CastleListViewModel by viewModels()
-
     private lateinit var listAdapter: CastleListAdapter
 
     @Inject
@@ -37,11 +38,8 @@ class CastleListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentCastleListBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+        savedInstanceState: Bundle?,
+    ): View = FragmentCastleListBinding.inflate(inflater, container, false).also { _binding = it }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,6 +47,7 @@ class CastleListFragment : Fragment() {
         listAdapter = CastleListAdapter(requireActivity()).apply {
             onItemClickedListener = object : CastleListAdapter.OnItemClickedListener {
                 override fun onItemClicked(model: CastleListItemViewModel) {
+                    // TODO move to the view model
                     navigator.navigateToCastleDetails(model.id)
                 }
             }
@@ -59,9 +58,9 @@ class CastleListFragment : Fragment() {
             adapter = listAdapter
         }
 
-        viewModel.viewState.observe(viewLifecycleOwner, ::render)
+        val viewModel = ViewModelProvider(this).get(CastleListViewModelImpl::class.java)
 
-        viewModel.loadCastleList()
+        viewModel.viewState.collectIn(lifecycleScope, ::render)
     }
 
     override fun onDestroyView() {
