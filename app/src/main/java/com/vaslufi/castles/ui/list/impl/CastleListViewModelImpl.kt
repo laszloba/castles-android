@@ -9,6 +9,7 @@ import com.vaslufi.castles.ui.list.CastleListViewState
 import com.vaslufi.castles.ui.list.Error
 import com.vaslufi.castles.ui.list.Loading
 import com.vaslufi.castles.usecases.GetCastleListUseCase
+import com.vaslufi.castles.usecases.navigation.GoToCastleDetailsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CastleListViewModelImpl @Inject constructor(
     private val getCastleListUseCase: GetCastleListUseCase,
+    private val goToCastleDetailsUseCase: GoToCastleDetailsUseCase,
 ) : ViewModel(), CastleListViewModel {
     override val viewState = MutableStateFlow<CastleListViewState>(Loading)
     override val startupJob: Job
@@ -35,5 +37,9 @@ class CastleListViewModelImpl @Inject constructor(
             is Result.Success -> CastleListLoaded(result.value)
             is Result.Failure -> Error
         }
+    }
+
+    override fun openDetails(castleId: Long) = viewModelScope.launch {
+        goToCastleDetailsUseCase.invoke(castleId)
     }
 }

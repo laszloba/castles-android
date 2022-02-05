@@ -11,11 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
 import com.vaslufi.castles.model.CastleListItemViewModel
-import com.vaslufi.castles.navigator.AppNavigator
 import com.vaslufi.castles.ui.list.impl.CastleListViewModelImpl
 import com.vaslufi.castles.util.extension.collectIn
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class CastleListFragment : Fragment() {
@@ -29,10 +27,8 @@ class CastleListFragment : Fragment() {
     private var _binding: FragmentCastleListBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: CastleListViewModel
     private lateinit var listAdapter: CastleListAdapter
-
-    @Inject
-    lateinit var navigator: AppNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,11 +39,12 @@ class CastleListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this).get(CastleListViewModelImpl::class.java)
+
         listAdapter = CastleListAdapter(requireActivity()).apply {
             onItemClickedListener = object : CastleListAdapter.OnItemClickedListener {
                 override fun onItemClicked(model: CastleListItemViewModel) {
-                    // TODO move to the view model
-                    navigator.navigateToCastleDetails(model.id)
+                    viewModel.openDetails(model.id)
                 }
             }
         }
@@ -56,8 +53,6 @@ class CastleListFragment : Fragment() {
             layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
             adapter = listAdapter
         }
-
-        val viewModel = ViewModelProvider(this).get(CastleListViewModelImpl::class.java)
 
         viewModel.viewState.collectIn(lifecycleScope, ::render)
     }
