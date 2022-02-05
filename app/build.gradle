@@ -59,6 +59,7 @@ dependencies {
     implementation Libs.navigation_ui_ktx
     implementation Libs.recyclerview
     implementation Libs.retrofit
+    implementation Libs.timber
 
     kapt Libs.com_github_bumptech_glide_compiler
     kapt Libs.hilt_android_compiler

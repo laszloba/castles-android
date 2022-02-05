@@ -53,6 +53,8 @@ public object Libs {
     public const val hilt_android_gradle_plugin: String =
             "com.google.dagger:hilt-android-gradle-plugin:_"
 
+    public const val timber: String = "com.jakewharton.timber:timber:_"
+
     public const val ktlint: String = "com.pinterest:ktlint:_"
 
     public const val converter_moshi: String = "com.squareup.retrofit2:converter-moshi:_"

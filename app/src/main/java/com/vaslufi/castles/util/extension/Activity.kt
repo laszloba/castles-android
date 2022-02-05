@@ -12,6 +12,7 @@ import com.vaslufi.castles.navigation.ToResourceNavigation
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 /**
  * Subscribe to and perform common navigation actions coming from [navigationSource]. [hostFragmentId] is needed to find the navigation
@@ -26,6 +27,7 @@ fun AppCompatActivity.observeNavigationSource(
             .receiveAsFlow()
             .flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
             .collect { navigation ->
+                Timber.d("Navigation action received: %s", navigation)
                 when (navigation) {
                     is ToResourceNavigation -> findNavController(hostFragmentId).navigate(navigation.destination)
                     is ActionNavigation -> findNavController(hostFragmentId).navigate(navigation.action)

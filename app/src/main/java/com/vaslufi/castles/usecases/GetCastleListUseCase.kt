@@ -4,6 +4,7 @@ import com.vaslufi.castles.api.CastleService
 import com.vaslufi.castles.common.Result
 import com.vaslufi.castles.mapper.api.toview.CastleListItemMapper
 import com.vaslufi.castles.model.CastleListItemViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -36,7 +37,7 @@ class GetCastleListUseCaseImpl @Inject constructor(
                 }
             }
         } catch (e: Exception) {
-            // TODO Add Timber logging here
+            Timber.w(e, "Failed to fetch the list of the castles.")
             // TODO Handle connection errors separately
         }
         return Result.Failure(GetCastleListUseCase.ListLoadException())
