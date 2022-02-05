@@ -9,5 +9,5 @@ object Loading : CastleListViewState()
 object Error : CastleListViewState()
 
 data class CastleListLoaded(
-    val castleList: List<CastleListItemViewModel>
+    val castleList: List<CastleListItemViewModel>,
 ) : CastleListViewState()
