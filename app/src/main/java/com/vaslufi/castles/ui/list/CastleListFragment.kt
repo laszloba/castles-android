@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.vaslufi.castles.databinding.FragmentCastleListBinding
-import com.vaslufi.castles.extension.exhaustive
 import com.vaslufi.castles.model.CastleListItemViewModel
 import com.vaslufi.castles.navigator.AppNavigator
 import com.vaslufi.castles.ui.list.impl.CastleListViewModelImpl
@@ -78,6 +77,6 @@ class CastleListFragment : Fragment() {
                 binding.viewFlipper.displayedChild = Flipper.CONTENT
                 listAdapter.items = viewState.castleList
             }
-        }.exhaustive
+        }
     }
 }

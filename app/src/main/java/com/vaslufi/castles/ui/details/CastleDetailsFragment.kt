@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.snackbar.Snackbar
 import com.vaslufi.castles.databinding.FragmentCastleDetailsBinding
-import com.vaslufi.castles.extension.exhaustive
 import com.vaslufi.castles.ui.details.impl.CastleDetailsViewModelImpl
 import com.vaslufi.castles.util.Intents
 import com.vaslufi.castles.util.extension.collectIn
@@ -87,7 +86,7 @@ class CastleDetailsFragment : Fragment() {
                     )
                 }
             }
-        }.exhaustive
+        }
     }
 
     private fun showButtonWithUrl(button: Button, url: String?) {
