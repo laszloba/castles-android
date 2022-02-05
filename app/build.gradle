@@ -48,17 +48,18 @@ configurations {
 dependencies {
     implementation Libs.appcompat
     implementation Libs.constraintlayout
+    implementation Libs.converter_moshi
     implementation Libs.core_ktx
+    implementation Libs.glide
+    implementation Libs.hilt_android
+    implementation Libs.kotlin_stdlib
     implementation Libs.lifecycle_viewmodel_ktx
+    implementation Libs.material
     implementation Libs.navigation_fragment_ktx
     implementation Libs.navigation_ui_ktx
     implementation Libs.recyclerview
-    implementation Libs.glide
-    implementation Libs.material
-    implementation Libs.hilt_android
-    implementation Libs.converter_moshi
     implementation Libs.retrofit
-    implementation Libs.kotlin_stdlib
+    implementation Libs.timber
 
     kapt Libs.com_github_bumptech_glide_compiler
     kapt Libs.hilt_android_compiler

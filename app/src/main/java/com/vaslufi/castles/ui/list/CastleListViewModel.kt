@@ -1,49 +1,21 @@
 package com.vaslufi.castles.ui.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.vaslufi.castles.api.CastleService
-import com.vaslufi.castles.mapper.api.toview.CastleListItemMapper
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.StateFlow
 
-@HiltViewModel
-class CastleListViewModel @Inject constructor(
-    private val service: CastleService,
-    private val castleListItemMapper: CastleListItemMapper
-) : ViewModel() {
+interface CastleListViewModel {
+    /**
+     * The state of the current view.
+     */
+    val viewState: StateFlow<CastleListViewState>
 
-    private val _viewState = MutableLiveData<CastleListViewState>()
-    val viewState: LiveData<CastleListViewState>
-        get() = _viewState
+    /**
+     * The job started upon creating the view model, used for unit testing.
+     */
+    val startupJob: Job
 
-    init {
-        _viewState.value = Loading
-    }
-
-    fun loadCastleList() {
-        viewModelScope.launch {
-            _viewState.value = Loading
-
-            try {
-                val castleListResponse = service.getCastleList()
-
-                if (castleListResponse.isSuccessful) {
-                    castleListResponse.body()?.let {
-                        _viewState.value =
-                            CastleListLoaded(
-                                castleListItemMapper.map(it)
-                            )
-                    }
-                } else {
-                    _viewState.value = Error
-                }
-            } catch (e: Exception) {
-                _viewState.value = Error
-            }
-        }
-    }
+    /**
+     * Open castle details screen.
+     */
+    fun openDetails(castleId: Long): Job
 }
