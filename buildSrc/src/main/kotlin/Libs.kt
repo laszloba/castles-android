@@ -14,6 +14,16 @@ import kotlin.String
 public object Libs {
     public const val appcompat: String = "androidx.appcompat:appcompat:_"
 
+    public const val androidx_compose_compiler_compiler: String =
+            "androidx.compose.compiler:compiler:_"
+
+    public const val androidx_compose_material_material: String =
+            "androidx.compose.material:material:_"
+
+    public const val ui_test_junit4: String = "androidx.compose.ui:ui-test-junit4:_"
+
+    public const val ui_tooling: String = "androidx.compose.ui:ui-tooling:_"
+
     public const val constraintlayout: String = "androidx.constraintlayout:constraintlayout:_"
 
     public const val core_ktx: String = "androidx.core:core-ktx:_"
@@ -44,7 +54,8 @@ public object Libs {
 
     public const val glide: String = "com.github.bumptech.glide:glide:_"
 
-    public const val material: String = "com.google.android.material:material:_"
+    public const val com_google_android_material_material: String =
+            "com.google.android.material:material:_"
 
     public const val hilt_android: String = "com.google.dagger:hilt-android:_"
 
