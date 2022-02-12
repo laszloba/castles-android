@@ -1,6 +1,6 @@
 package com.vaslufi.castles.model
 
-data class CastleDataViewModel(
+data class CastleData(
     override val id: Long,
     override val name: String,
     override val imageUrl: String,

@@ -1,15 +1,15 @@
 package com.vaslufi.castles.mapper.api.toview
 
 import com.vaslufi.castles.data.api.CastleDataApiModel
-import com.vaslufi.castles.model.CastleDataViewModel
+import com.vaslufi.castles.model.CastleData
 import com.vaslufi.castles.model.CoordinateViewModel
 import javax.inject.Inject
 
 class CastleDataMapper @Inject constructor() :
-    ApiModelToViewModelMapper<CastleDataApiModel, CastleDataViewModel>() {
+    ApiModelToViewModelMapper<CastleDataApiModel, CastleData>() {
 
-    override fun map(model: CastleDataApiModel): CastleDataViewModel =
-        CastleDataViewModel(
+    override fun map(model: CastleDataApiModel): CastleData =
+        CastleData(
             id = model.id,
             name = model.name,
             imageUrl = model.imageUrl,
