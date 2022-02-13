@@ -75,6 +75,8 @@ public object Libs {
     public const val de_fayard_buildsrclibs_gradle_plugin: String =
             "de.fayard.buildSrcLibs:de.fayard.buildSrcLibs.gradle.plugin:_"
 
+    public const val coil_compose: String = "io.coil-kt:coil-compose:_"
+
     public const val junit_junit: String = "junit:junit:_"
 
     public const val org_jacoco_ant: String = "org.jacoco:org.jacoco.ant:_"

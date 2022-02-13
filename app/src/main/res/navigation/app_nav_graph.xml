@@ -24,8 +24,7 @@
     <fragment
         android:id="@+id/castleDetailsFragment"
         android:name="com.vaslufi.castles.ui.details.CastleDetailsFragment"
-        android:label="CastleListFragment"
-        tools:layout="@layout/fragment_castle_details">
+        android:label="CastleListFragment">
 
         <argument
             android:name="castleId"

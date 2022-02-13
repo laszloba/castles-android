@@ -55,10 +55,12 @@ configurations {
 dependencies {
     implementation Libs.androidx_compose_material_material
     implementation Libs.appcompat
+    implementation Libs.coil_compose
     implementation Libs.com_google_android_material_material
     implementation Libs.constraintlayout
     implementation Libs.converter_moshi
     implementation Libs.core_ktx
+    // TODO Remove after everything is migrated to Jetpack Compose
     implementation Libs.glide
     implementation Libs.hilt_android
     implementation Libs.kotlin_stdlib
@@ -70,6 +72,7 @@ dependencies {
     implementation Libs.timber
     implementation Libs.ui_tooling
 
+    // TODO Remove after everything is migrated to Jetpack Compose
     kapt Libs.com_github_bumptech_glide_compiler
     kapt Libs.hilt_android_compiler
 
