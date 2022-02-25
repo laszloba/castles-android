@@ -17,18 +17,13 @@ public object Libs {
     public const val androidx_compose_compiler_compiler: String =
             "androidx.compose.compiler:compiler:_"
 
-    public const val androidx_compose_material_material: String =
-            "androidx.compose.material:material:_"
+    public const val material: String = "androidx.compose.material:material:_"
 
     public const val ui_test_junit4: String = "androidx.compose.ui:ui-test-junit4:_"
 
     public const val ui_tooling: String = "androidx.compose.ui:ui-tooling:_"
 
-    public const val constraintlayout: String = "androidx.constraintlayout:constraintlayout:_"
-
     public const val core_ktx: String = "androidx.core:core-ktx:_"
-
-    public const val viewbinding: String = "androidx.databinding:viewbinding:_"
 
     public const val lifecycle_viewmodel_ktx: String =
             "androidx.lifecycle:lifecycle-viewmodel-ktx:_"
@@ -41,21 +36,11 @@ public object Libs {
 
     public const val navigation_ui_ktx: String = "androidx.navigation:navigation-ui-ktx:_"
 
-    public const val recyclerview: String = "androidx.recyclerview:recyclerview:_"
-
     public const val espresso_core: String = "androidx.test.espresso:espresso-core:_"
 
     public const val androidx_test_ext_junit: String = "androidx.test.ext:junit:_"
 
     public const val com_android_tools_build_gradle: String = "com.android.tools.build:gradle:_"
-
-    public const val com_github_bumptech_glide_compiler: String =
-            "com.github.bumptech.glide:compiler:_"
-
-    public const val glide: String = "com.github.bumptech.glide:glide:_"
-
-    public const val com_google_android_material_material: String =
-            "com.google.android.material:material:_"
 
     public const val hilt_android: String = "com.google.dagger:hilt-android:_"
 
