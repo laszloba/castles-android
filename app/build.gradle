@@ -8,14 +8,14 @@ plugins {
 
 android {
     compileSdkVersion 31
-    buildToolsVersion '30.0.3'
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.vaslufi.castles"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
-        versionName '1.0'
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,7 +28,7 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
+        compose true
     }
 
     compileOptions {
@@ -39,6 +39,11 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    composeOptions {
+        // TODO use refreshVersions' versionFor() function instead of the hardcoded version number
+        kotlinCompilerExtensionVersion = "1.2.0-alpha03"
+    }
 }
 
 configurations {
@@ -46,27 +51,27 @@ configurations {
 }
 
 dependencies {
+    implementation Libs.material
     implementation Libs.appcompat
-    implementation Libs.constraintlayout
+    implementation Libs.coil_compose
     implementation Libs.converter_moshi
     implementation Libs.core_ktx
-    implementation Libs.glide
     implementation Libs.hilt_android
     implementation Libs.kotlin_stdlib
     implementation Libs.lifecycle_viewmodel_ktx
-    implementation Libs.material
     implementation Libs.navigation_fragment_ktx
     implementation Libs.navigation_ui_ktx
-    implementation Libs.recyclerview
     implementation Libs.retrofit
     implementation Libs.timber
+    implementation Libs.ui_tooling
 
-    kapt Libs.com_github_bumptech_glide_compiler
     kapt Libs.hilt_android_compiler
 
     testImplementation Libs.junit_junit
+
     androidTestImplementation Libs.androidx_test_ext_junit
     androidTestImplementation Libs.espresso_core
+    androidTestImplementation Libs.ui_test_junit4
 
     ktlint Libs.ktlint
 }

@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/castleListFragment"
         android:name="com.vaslufi.castles.ui.list.CastleListFragment"
-        android:label="CastleListFragment"
-        tools:layout="@layout/fragment_castle_list">
+        android:label="CastleListFragment">
 
         <action
             android:id="@+id/openCastleDetailsFragment"
@@ -24,8 +23,7 @@
     <fragment
         android:id="@+id/castleDetailsFragment"
         android:name="com.vaslufi.castles.ui.details.CastleDetailsFragment"
-        android:label="CastleListFragment"
-        tools:layout="@layout/fragment_castle_details">
+        android:label="CastleListFragment">
 
         <argument
             android:name="castleId"

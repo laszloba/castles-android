@@ -23,7 +23,7 @@ class GoToCastleDetailsUseCaseImpl @Inject constructor(
         navigator.navigate(
             ActionNavigation(
                 CastleListFragmentDirections.openCastleDetailsFragment(
-                    castleId = castleId
+                    castleId = castleId,
                 ),
             ),
         )
