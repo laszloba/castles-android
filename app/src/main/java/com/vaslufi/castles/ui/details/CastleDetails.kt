@@ -196,7 +196,7 @@ private fun CastleDetailsMapsOnlyPreview() {
 }
 
 private val sampleCastleData = CastleData(
-    id = 1,
+    id = 1L,
     name = "Warwick Castle",
     imageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ae/Warwick_Castle_May_2016.jpg",
     description = "Warwick Castle is a medieval castle developed from a wooden fort, originally built by William the Conqueror during " +
@@ -211,5 +211,5 @@ private val sampleCastleData = CastleData(
         longitude = -1.585226879165293,
     ),
     officialUrl = "https://www.warwick-castle.com/",
-    googleCid = 2979592776009511813,
+    googleCid = 2979592776009511813L,
 )

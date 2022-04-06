@@ -177,22 +177,22 @@ private fun CastleListItemPreview() {
 
 private val sampleCastleListData = listOf(
     CastleListItemViewModel(
-        id = 1,
+        id = 1L,
         name = "Arundel Castle",
         imageUrl = "https://image.url",
     ),
     CastleListItemViewModel(
-        id = 2,
+        id = 2L,
         name = "Bodiam Castle",
         imageUrl = "https://image.url",
     ),
     CastleListItemViewModel(
-        id = 3,
+        id = 3L,
         name = "Hever Castle",
         imageUrl = "https://image.url",
     ),
     CastleListItemViewModel(
-        id = 4,
+        id = 4L,
         name = "Warwick Castle",
         imageUrl = "https://image.url",
     )
