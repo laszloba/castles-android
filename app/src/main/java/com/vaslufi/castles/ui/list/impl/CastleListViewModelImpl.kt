@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-// TODO Create unit tests
 @HiltViewModel
 class CastleListViewModelImpl @Inject constructor(
     private val getCastleListUseCase: GetCastleListUseCase,

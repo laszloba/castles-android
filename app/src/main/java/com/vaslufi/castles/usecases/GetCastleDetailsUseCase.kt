@@ -22,7 +22,6 @@ interface GetCastleDetailsUseCase {
     class DetailsLoadException : Exception()
 }
 
-// TODO Create unit tests
 class GetCastleDetailsUseCaseImpl @Inject constructor(
     private val castleService: CastleService,
     private val castleDataMapper: CastleDataMapper,
