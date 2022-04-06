@@ -24,18 +24,16 @@ interface GetCastleDetailsUseCase {
 
 // TODO Create unit tests
 class GetCastleDetailsUseCaseImpl @Inject constructor(
-    private val service: CastleService,
+    private val castleService: CastleService,
     private val castleDataMapper: CastleDataMapper,
 ) : GetCastleDetailsUseCase {
     override suspend fun invoke(castleId: Long): Result<CastleData> {
         try {
-            val castleDetailsResponse = service.getCastleDetails(castleId)
-
-            if (castleDetailsResponse.isSuccessful) {
-                castleDetailsResponse.body()?.let {
-                    return Result.Success(castleDataMapper.map(it))
-                }
-            }
+            return Result.Success(
+                castleDataMapper.map(
+                    castleService.getCastleDetails(castleId)
+                )
+            )
         } catch (e: Exception) {
             Timber.w(e, "Failed to fetch the details of a castle.")
             // TODO Handle connection errors separately
