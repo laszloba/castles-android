@@ -22,20 +22,17 @@ interface GetCastleListUseCase {
     class ListLoadException : Exception()
 }
 
-// TODO Create unit tests
 class GetCastleListUseCaseImpl @Inject constructor(
-    private val service: CastleService,
+    private val castleService: CastleService,
     private val castleListItemMapper: CastleListItemMapper,
 ) : GetCastleListUseCase {
     override suspend fun invoke(): Result<List<CastleListItemViewModel>> {
         try {
-            val castleListResponse = service.getCastleList()
-
-            if (castleListResponse.isSuccessful) {
-                castleListResponse.body()?.let {
-                    return Result.Success(castleListItemMapper.map(it))
-                }
-            }
+            return Result.Success(
+                castleListItemMapper.map(
+                    castleService.getCastleList()
+                )
+            )
         } catch (e: Exception) {
             Timber.w(e, "Failed to fetch the list of the castles.")
             // TODO Handle connection errors separately

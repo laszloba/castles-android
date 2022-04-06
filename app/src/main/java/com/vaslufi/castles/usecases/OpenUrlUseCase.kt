@@ -13,7 +13,7 @@ interface OpenUrlUseCase {
      */
     fun invoke(url: String): Result<Unit>
 }
-// TODO Create unit tests
+
 class OpenUrlUseCaseImpl @Inject constructor(
     private val platformService: PlatformService,
 ) : OpenUrlUseCase {

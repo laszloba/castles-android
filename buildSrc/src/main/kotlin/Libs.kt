@@ -62,6 +62,12 @@ public object Libs {
 
     public const val coil_compose: String = "io.coil-kt:coil-compose:_"
 
+    public const val kotest_assertions_core: String = "io.kotest:kotest-assertions-core:_"
+
+    public const val kotest_runner_junit5: String = "io.kotest:kotest-runner-junit5:_"
+
+    public const val mockk: String = "io.mockk:mockk:_"
+
     public const val junit_junit: String = "junit:junit:_"
 
     public const val org_jacoco_ant: String = "org.jacoco:org.jacoco.ant:_"
@@ -72,4 +78,9 @@ public object Libs {
     public const val kotlin_gradle_plugin: String = "org.jetbrains.kotlin:kotlin-gradle-plugin:_"
 
     public const val kotlin_stdlib: String = "org.jetbrains.kotlin:kotlin-stdlib:_"
+
+    public const val kotlinx_coroutines_test: String =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:_"
+
+    public const val junit_jupiter_engine: String = "org.junit.jupiter:junit-jupiter-engine:_"
 }

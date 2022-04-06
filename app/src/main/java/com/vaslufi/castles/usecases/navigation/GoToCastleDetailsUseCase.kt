@@ -15,7 +15,6 @@ interface GoToCastleDetailsUseCase {
     suspend fun invoke(castleId: Long)
 }
 
-// TODO Create unit tests
 class GoToCastleDetailsUseCaseImpl @Inject constructor(
     private val navigator: Navigator,
 ) : GoToCastleDetailsUseCase {

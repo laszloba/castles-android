@@ -44,6 +44,12 @@ android {
         // TODO use refreshVersions' versionFor() function instead of the hardcoded version number
         kotlinCompilerExtensionVersion = "1.2.0-alpha03"
     }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 configurations {
@@ -68,6 +74,11 @@ dependencies {
     kapt Libs.hilt_android_compiler
 
     testImplementation Libs.junit_junit
+    testImplementation Libs.junit_jupiter_engine
+    testImplementation Libs.kotest_assertions_core
+    testImplementation Libs.kotest_runner_junit5
+    testImplementation Libs.kotlinx_coroutines_test
+    testImplementation Libs.mockk
 
     androidTestImplementation Libs.androidx_test_ext_junit
     androidTestImplementation Libs.espresso_core

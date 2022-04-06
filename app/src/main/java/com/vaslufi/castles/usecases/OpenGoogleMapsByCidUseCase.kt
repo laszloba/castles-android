@@ -13,7 +13,7 @@ interface OpenGoogleMapsByCidUseCase {
      */
     fun invoke(googleCid: Long): Result<Unit>
 }
-// TODO Create unit tests
+
 class OpenGoogleMapsByCidUseCaseImpl @Inject constructor(
     private val platformService: PlatformService,
 ) : OpenGoogleMapsByCidUseCase {
